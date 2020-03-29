@@ -2,7 +2,7 @@
 
 ![alt text](images/loadScreen.png)
 
-There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed recently there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them - as of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
+There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
 
 Head over to the [Arch Linux download page](https://www.archlinux.org/download/) and either torrent yourself an ISO or download one from one of the mirrors.
 
@@ -52,11 +52,11 @@ Navigate to "System".
 
 ![alt text](images/virtualbox/7c.png)
 
-Increase the number of CPUs the VM is allowed to use (assuming you have more than one on the host machine). Then move over to "Display".
+Choose the "Processor" tab, and increase the number of CPUs the VM is allowed to use (assuming you have more than one on the host machine). Then move over to "Display" on the menu on the left side of the screen.
 
 ![alt text](images/virtualbox/7d.png)
 
-I like to increase the video to max as well. Exit the "Settings" menu. We're read to fire up the machine and connect it to our Arch ISO. Click "Start".
+I like to increase the video to max as well. Exit the "Settings" menu by clicking "Ok". We're ready to fire up the machine and connect it to our Arch ISO. In the top menu click the green "Start" button.
 
 ![alt text](images/virtualbox/9.png)
 
@@ -72,7 +72,7 @@ Select the first option, which boots us into a live Arch system. When you boot i
 
 ![alt text](images/install/00.png)
 
-*Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this*
+*Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this.*
 
 Here goes!
 
@@ -92,13 +92,13 @@ Next you will see a screen like the one below. You can move left and write with 
 
 ![alt text](images/install/gp1.png)
 
-Select "primary" when asked for type (extended partitions allow for sub-dividing space, which isn't a concern since we're using the whole virtual disk for one thing).
-
-![alt text](images/install/gp3.png)
-
 Hit enter to use all 24G.
 
 ![alt text](images/install/gp2.png)
+
+Select "primary" when asked for type (extended partitions allow for sub-dividing space, which isn't a concern since we're using the whole virtual disk for one thing).
+
+![alt text](images/install/gp3.png)
 
 Now move to the "Bootable" option on the left side of the screen and hit enter.
 
