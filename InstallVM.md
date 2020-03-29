@@ -2,6 +2,9 @@
 
 ![alt text](images/loadScreen.png)
 
+![alt text](loadScreen.png)
+
+
 There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
 
 Head over to the [Arch Linux download page](https://www.archlinux.org/download/) and either torrent yourself an ISO or download one from one of the mirrors.
