@@ -14,63 +14,63 @@ VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). 
 
 There are a few steps to the VM setup but they're simple and the defaults will work in most cases. Once you've got VirtualBox running, click "New" to get things started.
 
-![alt text](images/virtualbox/1.png)
+![alt text](images/virtualbox/virtualbox_1.png)
 
 Give your machine a snappy name! VirtualBox will detect what system it is if it starts with "Arch". If it doesn't, you can select it from the dropdown. Choose "Arch Linux (64-bit)".
 
-![alt text](images/virtualbox/2.png)
+![alt text](images/virtualbox/virtualbox_2.png)
 
 VBox will ask what you want for memory size. I usually double this just to make sure the machine isn't sluggish, then click "Next".
 
-![alt text](images/virtualbox/3.png)
+![alt text](images/virtualbox/virtualbox_3.png)
 
 We want to create a disk, not load an existing one. Just click "Create".
 
-![alt text](images/virtualbox/4.png)
+![alt text](images/virtualbox/virtualbox_4.png)
 
 We can accept the default drive type and click "Next".
 
-![alt text](images/virtualbox/5.png)
+![alt text](images/virtualbox/virtualbox_5.png)
 
 I use dynamically allocated by default, and it will work fine for our purposes.
 
-![alt text](images/virtualbox/6.png)
+![alt text](images/virtualbox/virtualbox_6.png)
 
 I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a vm, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
 
-![alt text](images/virtualbox/7.png)
+![alt text](images/virtualbox/virtualbox_7.png)
 
 We will now see the machine on the VBox menu on the left side of the screen.
 
-![alt text](images/virtualbox/8.png)
+![alt text](images/virtualbox/virtualbox_8.png)
 
 Before we go ahead and start it and select our ISO, a few little tweaks make the VBox experience a lot more pleasant and fast. Click "Settings". You'll see a menu like this:
 
-![alt text](images/virtualbox/7b.png)
+![alt text](images/virtualbox/virtualbox_7b.png)
 
 Navigate to "System".
 
-![alt text](images/virtualbox/7c.png)
+![alt text](images/virtualbox/virtualbox_7c.png)
 
 Choose the "Processor" tab, and increase the number of CPUs the VM is allowed to use (assuming you have more than one on the host machine). Then move over to "Display" on the menu on the left side of the screen.
 
-![alt text](images/virtualbox/7d.png)
+![alt text](images/virtualbox/virtualbox_7d.png)
 
 I like to increase the video to max as well. Exit the "Settings" menu by clicking "Ok". We're ready to fire up the machine and connect it to our Arch ISO. In the top menu click the green "Start" button.
 
-![alt text](images/virtualbox/9.png)
+![alt text](images/virtualbox/virtualbox_9.png)
 
 VBox will now ask you where your bootable media is. Click the folder icon. You'll see a screen like this:
 
-![alt text](images/virtualbox/10.png)
+![alt text](images/virtualbox/virtualbox_10.png)
 
 Click the "Add" symbol in the left of the menu, navigate to wherever you downloaded your ISO, and select it with "Choose", then click "Start".
 
-![alt text](images/virtualbox/11.png)
+![alt text](images/virtualbox/virtualbox_11.png)
 
 Select the first option, which boots us into a live Arch system. When you boot in, a series of message will flash by and then you'll see something like this:
 
-![alt text](images/install/00.png)
+![alt text](images/install/install_00.png)
 
 *Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this.*
 
