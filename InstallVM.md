@@ -288,7 +288,7 @@ Enter the name you want and exit ```nano```.
 
 ![alt text](images/install/install_26.png)
 
-Now we need to setup the network inside chroot so we can install the bootloaded (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*.
+Now we need to setup the network inside chroot so we can install the bootloaded (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
 
     pacman -S dhcpcd
 
@@ -343,28 +343,18 @@ We're good! If you want a desktop, you can choose whichever you like, and set it
 
     sudo pacman -S gnome
 
-And enable the Gnome display manager like this:
+You may see the following prompt:
+
+![alt text](images/install/install_jack.png)
+
+Accepting the default is fine (it's an audio component use in the Gnome package)
+
+Next, enable the Gnome display manager like this:
 
     systemctl enable gdm.service
 
-Now reboot, and you will be greeted with a the Gnome login screen
+This will allow us to use the desktop after boot. Reboot, and you will be greeted with a the Gnome login screen.
 
-----
+    reboot
 
-pacman -S virtualbox-guest-utils
-
-modprobe -a ...
-
-systemctl enable vboxservice.service
-
-pacman -S virtualbox #duh (chose 2 for this kernel)
-
-[ https://bbs.archlinux.org/viewtopic.php?id=209966 ]
-
-sudo pacman -S linux-headers
-
-modprobe vboxdrv # then reboot
-
-sudo vbox reload
-
-[ install yaourt -_- then add vbox entensions form oracle]
+You should now have a working VM. I'd reccomend checking out the Arch Wiki on tweaking the virtual machine for your host OS to allow for fullscreen, shared clipboard, and shared drives.
