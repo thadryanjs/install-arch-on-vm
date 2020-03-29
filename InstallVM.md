@@ -1,6 +1,6 @@
 # How to install Arch Linux on VirtualBox (3-15-2020)
 
-![alt text](images/loadScreen.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_loadScreen.png)
 
 There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
 
@@ -14,63 +14,65 @@ VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). 
 
 There are a few steps to the VM setup but they're simple and the defaults will work in most cases. Once you've got VirtualBox running, click "New" to get things started.
 
-![alt text](images/virtualbox/virtualbox_1.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_1.png)
 
 Give your machine a snappy name! VirtualBox will detect what system it is if it starts with "Arch". If it doesn't, you can select it from the dropdown. Choose "Arch Linux (64-bit)".
 
-![alt text](images/virtualbox/virtualbox_2.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_2.png)
 
 VBox will ask what you want for memory size. I usually double this just to make sure the machine isn't sluggish, then click "Next".
 
-![alt text](images/virtualbox/virtualbox_3.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_3.png)
 
 We want to create a disk, not load an existing one. Just click "Create".
 
-![alt text](images/virtualbox/virtualbox_4.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_4.png)
 
 We can accept the default drive type and click "Next".
 
-![alt text](images/virtualbox/virtualbox_5.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_5.png)
 
 I use dynamically allocated by default, and it will work fine for our purposes.
 
-![alt text](images/virtualbox/virtualbox_6.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_6.png)
 
 I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a vm, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
 
-![alt text](images/virtualbox/virtualbox_7.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_7.png)
 
 We will now see the machine on the VBox menu on the left side of the screen.
 
-![alt text](images/virtualbox/virtualbox_8.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_8.png)
 
 Before we go ahead and start it and select our ISO, a few little tweaks make the VBox experience a lot more pleasant and fast. Click "Settings". You'll see a menu like this:
 
-![alt text](images/virtualbox/virtualbox_7b.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_7b.png)
 
 Navigate to "System".
 
-![alt text](images/virtualbox/virtualbox_7c.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_7c.png)
 
 Choose the "Processor" tab, and increase the number of CPUs the VM is allowed to use (assuming you have more than one on the host machine). Then move over to "Display" on the menu on the left side of the screen.
 
-![alt text](images/virtualbox/virtualbox_7d.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_7d.png)
 
 I like to increase the video to max as well. Exit the "Settings" menu by clicking "Ok". We're ready to fire up the machine and connect it to our Arch ISO. In the top menu click the green "Start" button.
 
-![alt text](images/virtualbox/virtualbox_9.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_9.png)
 
 VBox will now ask you where your bootable media is. Click the folder icon. You'll see a screen like this:
 
-![alt text](images/virtualbox/virtualbox_10.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_10.png)
 
 Click the "Add" symbol in the left of the menu, navigate to wherever you downloaded your ISO, and select it with "Choose", then click "Start".
 
-![alt text](images/virtualbox/virtualbox_11.png)
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_11.png)
 
 Select the first option, which boots us into a live Arch system. When you boot in, a series of message will flash by and then you'll see something like this:
 
-![alt text](images/install/install_00.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_00.png)
 
 *Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this.*
 
@@ -86,35 +88,43 @@ This is where we prepare the hard drive for installation. There are many ways to
 
 This starts a partitioning tool. You'll be given an option to select "label type" by moving the arrows up and down. We're looking for ```dos```.
 
-![alt text](images/install/install_0.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_0.png)
 
 Next you will see a screen like the one below. You can move left and write with arrow keys to make a selection. Move to "New", and hit "enter" to make a new partition of the virtual hardrive. 
 
-![alt text](images/install/install_gp1.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp1.png)
 
 Hit enter to use all 24G.
 
-![alt text](images/install/install_gp2.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp2.png)
 
 Select "primary" when asked for type (extended partitions allow for sub-dividing space, which isn't a concern since we're using the whole virtual disk for one thing).
 
-![alt text](images/install/install_gp3.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp3.png)
 
 Now move to the "Bootable" option on the left side of the screen and hit enter.
 
-![alt text](images/install/install_gp4.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp4.png)
 
 Navigate to "Write" and hit enter to make these changes actually happen. If we were on a real machine, this would be the point of no return where we had erased the underlying system.
 
-![alt text](images/install/install_gp5.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp5.png)
 
 You will have to type "yes" to consent to the operation. The top of the screen should show a partition of 24G on /dev/sda1 with a ```*``` under "Boot".
 
-![alt text](images/install/install_gp7.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp7.png)
 
 Now we can head over to "Quit" and exit the partition editor tool.
 
-![alt text](images/install/install_gp8.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp8.png)
 
 ### Filesystems
 
@@ -122,7 +132,8 @@ Next, we assign the file system type to the newly partitioned drive partition. `
 
     mkfs.ext4 /dev/sda1
 
-![alt text](images/install/install_2.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_2.png)
 
 You will see some output from the results of the command. Now we mount the drive so we can install the base system:
 
@@ -136,23 +147,27 @@ Arch uses a utility called ```pacstrap``` utility to install the base Arch syste
 
 Initially, you'll see:
 
-![alt text](images/install/install_5.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_5.png)
 
 ...and then something like:
 
-![alt text](images/install/install_6.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_6.png)
 
 This is the normal display of Arch syncing and installing packages, the equivalent of the ```apt update```, etc proceedure in Debian based systems. Hit enter to continute when promted.
 
 When it's done, it will look like this:
 
-![alt text](images/install/install_7.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_7.png)
 
 We now need to create a file system table. This is a record of our hard drive partitions assigned indentifiers for effecient look-up. If you're curious, you can view the help for the command like this:
 
     genfstab -h
 
-![alt text](images/install/install_8.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_8.png)
 
 To use it, and redirect the output to the proper spot on our system, use this command:
 
@@ -164,14 +179,16 @@ Now we use the Arch version of ```chroot```. This creates an isolated environmen
 
 You should notice a change in the terminal prompt:
 
-![alt text](images/install/install_11.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_11.png)
 
 
 We will install ```nano```, and simple text-editor, within ```chroot``` so we can do some manual configuration. ```pacman``` is the package manager for Arch. It's fast, simple, and dearly beloved. ```-S``` means "sync", as in "sync these packages with my machine". *This is also a divergence from previous tutorials*.
 
     pacman -S nano
 
-![alt text](images/install/install_12.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_12.png)
 
 Hit enter to accept the default and proceed with the installation. This should be quick.
 
@@ -181,7 +198,8 @@ Now we're free to edit some files:
 
     nano /etc/locale.gen
 
-![alt text](images/install/install_14.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_14.png)
 
 We're doing this setup for English language systems, use whatever you're looking for. Basically we're just uncommenting the language locale we want. If you're configuring an English langauge system, scroll until you find...
 
@@ -189,18 +207,21 @@ We're doing this setup for English language systems, use whatever you're looking
 
 ...and uncomment it. 
 
-![alt text](images/install/install_15.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_15.png)
 
 
 Press ```ctr-x``` to exit ```nano```. You'll be asked if you want to save the modified buffer. 
 
-![alt text](images/install/install_16.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_16.png)
 
 Type ```y```, then hit enter when asked for the filename to save it as (it will default to the one we gave it using the ```nano``` command). We can now run the ```locale-gen``` command to generate the locale information.
 
     locale-gen
 
-![alt text](images/install/install_17.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_17.png)
 
 We've generated to locale and made them available. Now we can set it as our choice. Enter the language info in a file called locale.conf.
 
@@ -212,7 +233,8 @@ Enter...
 
 ...into this file, and exit ```nano``` as before.
 
-![alt text](images/install/install_18.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_18.png)
 
 ### Time
 
@@ -220,7 +242,8 @@ Enter...
 
     ls /usr/share/zoneinfo
 
-![alt text](images/install/install_19.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_19.png)
 
 You can see the options under each region using ``ls`` on one of the folders shown by the above command, ie...
 
@@ -228,7 +251,8 @@ You can see the options under each region using ``ls`` on one of the folders sho
 
 ...to see which region you're in:
 
-![alt text](images/install/install_timezones.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_timezones.png)
 
 
 We then set the desired zone to our system localtime. This command creates a "symbolic link" from the zone info data, and associates that link with a new config file called *etc/localtime*. I'm in the northeastern US, so for me it's:
@@ -251,7 +275,8 @@ Now we create a password for the root user.
 
 Here is what your screen should look like:
 
-![alt text](images/install/install_21.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_21.png)
 
 Practically speaking, I think it's worth making a main user at this point, though it isn't techincally required.
 
@@ -259,13 +284,15 @@ Practically speaking, I think it's worth making a main user at this point, thoug
 
 The ```-m``` flag creates a ```/home``` directory for the new user. The ```-g``` flag specifies the group to add the user to. The ```-G``` flag refers to auxilliary groups to add the user to. In this case, they're added to the ```wheel``` group, which will let them be a full admin. ```/bin/bash``` specifies what shell the user will have. It's typical to use bash. Don't forget to change ```username``` to the name you want.
 
-![alt text](images/install/install_22.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_22.png)
 
 Give the user a password:
 
     passwd username
 
-![alt text](images/install/install_23.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_23.png)
 
 
 Now, we allow our users in the wheel group to use ```sudo```. The ```visudo```   command makes sure the edits to the file are syntactically legit so you don't screw it up with a typo.
@@ -276,7 +303,8 @@ Find and uncomment the following line:
 
 *%wheel ALL=(ALL) ALL*
 
-![alt text](images/install/install_25.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_25.png)
 
 ### Hostname & Network
 
@@ -286,7 +314,8 @@ Now to name the machine:
 
 Enter the name you want and exit ```nano```.
 
-![alt text](images/install/install_26.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_26.png)
 
 Now we need to setup the network inside chroot so we can install the bootloaded (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
 
@@ -296,20 +325,23 @@ We've install the network manager, but we need to turn it on. We can do so using
 
     systemctl enable dhcpcd
 
-![alt text](images/install/install_27.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_27.png)
 
 Now we can install ```grub```, which will allow us to boot into our system. ```os-prober``` is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a vm. It's good to know it exists however.
 
     pacman –S grub os-prober
 
-![alt text](images/install/install_28.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_28.png)
 
 
 Now that we have ```grub```, we can install to our ```/dev/sda``` drive where is will be able to "see" the rest of our system:
 
     grub-install /dev/sda
 
-![alt text](images/install/install_new_grb.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_new_grb.png)
 
 This command will create a config file for ```grub``` from which we can customize it later if desired. 
 
@@ -317,7 +349,8 @@ This command will create a config file for ```grub``` from which we can customiz
 
 You should see something like this:
 
-![alt text](images/install/install_31.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_31.png)
 
 This is important: what it says it's detecting is the Linux kernel we installed earlier. This means ```grub``` knows where to look when it's time to boot. We can now exit the ```chroot``` environment:
 
@@ -329,15 +362,18 @@ We should have a working base system now. To test this, reboot:
 
 You should be back at the boot screen. Now, try booting into the existing OS to see our system. 
 
-![alt text](images/install/install_33.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_33.png)
 
 You should see the ```grub``` login screen. 
 
-![alt text](images/install/install_35.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_35.png)
 
 Select "Arch Linux". You'll be asked to log in via terminal. Type your username and password.
 
-![alt text](images/install/install_36.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_36.png)
 
 We're good! If you want a desktop, you can choose whichever you like, and set it up. I'm going to use Gnome for this because it's my go-to, but the point of Arch is that you can use whatever you want and configure it however you like. This will usually entail installing the desktop, and, if it's not included in the desktop package, a display manager. First the install (this takes a while - Gnome is full-size desktop):
 
@@ -345,7 +381,8 @@ We're good! If you want a desktop, you can choose whichever you like, and set it
 
 You may see the following prompt:
 
-![alt text](images/install/install_jack.png)
+
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_jack.png)
 
 Accepting the default is fine (it's an audio component use in the Gnome package)
 
