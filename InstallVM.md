@@ -2,7 +2,7 @@
 
 ![alt text](images/loadScreen.png)
 
-There have been several good walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed recently there have been some changes that require giving the process an update, so I thought I'd post a proceedure that included them - as of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating users, and adding users. 
+There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed recently there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them - as of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
 
 Head over to the [Arch Linux download page](https://www.archlinux.org/download/) and either torrent yourself an ISO or download one from one of the mirrors.
 
@@ -72,25 +72,27 @@ Select the first option, which boots us into a live Arch system. When you boot i
 
 ![alt text](images/install/00.png)
 
+*Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this*
+
 Here goes!
 
 ## The Arch part
 
 ### Partitioning
 
-This is where we prapare the hard drive for installation. There are many ways to do this, with separate partitions for boot, swap, etc, but for a simple test VM, we're just going to install it all into one partition. We prepare it using the following command.
+This is where we prepare the hard drive for installation. There are many ways to do this, with separate partitions for boot, swap, etc, but for a simple test VM, we're just going to install it all into one partition. We prepare it using the following command.
 
     cfdisk
 
-You'll be given an option to select "label type" by moving the arrows up and down. We're looking for ```dos```.
+This starts a partitioning tool. You'll be given an option to select "label type" by moving the arrows up and down. We're looking for ```dos```.
 
 ![alt text](images/install/0.png)
 
-Next you will see a screen like the one below. You can move left and write with arrow keys to make a selection. Hit "enter" to make a new partition of the virtual hardrive. 
+Next you will see a screen like the one below. You can move left and write with arrow keys to make a selection. Move to "New", and hit "enter" to make a new partition of the virtual hardrive. 
 
 ![alt text](images/install/gp1.png)
 
-Select "primary" when asked for type.
+Select "primary" when asked for type (extended partitions allow for sub-dividing space, which isn't a concern since we're using the whole virtual disk for one thing).
 
 ![alt text](images/install/gp3.png)
 
@@ -122,7 +124,7 @@ Next, we assign the file system type to the newly partitioned drive partition. `
 
 ![alt text](images/install/2.png)
 
-Now we mount the drive so we can install the base system:
+You will see some output from the results of the command. Now we mount the drive so we can install the base system:
 
     mount /dev/sda1 /mnt
 
@@ -224,11 +226,12 @@ You can see the options under each region using ``ls`` on one of the folders sho
 
     ls /usr/share/zoneinfo/America
 
-...to see which region you're in.
+...to see which region you're in:
 
-# add pic
+![alt text](images/install/timezones.png)
 
-We then set the desired zone to our systems localtime. This command creates a "symbolic link" from the zone info data, and associates that link with a new config file called *etc/localtime*. I'm in the northeastern US, so for me it's:
+
+We then set the desired zone to our system localtime. This command creates a "symbolic link" from the zone info data, and associates that link with a new config file called *etc/localtime*. I'm in the northeastern US, so for me it's:
 
     ln –s /usr/share/zoneinfo/America/New_York /etc/localtime
 
@@ -289,7 +292,7 @@ Now we need to setup the network inside chroot so we can install the bootloaded 
 
     pacman -S dhcpcd
 
-We've install the network manager, but we need to turn it on. We can do so using the ```systemctl`` command. 
+We've install the network manager, but we need to turn it on. We can do so using the ```systemctl``` command. 
 
     systemctl enable dhcpcd
 
@@ -324,21 +327,21 @@ We should have a working base system now. To test this, reboot:
 
     reboot 
 
-You should be back here:
+You should be back at the boot screen. Now, try booting into the existing OS to see our system. 
 
 ![alt text](images/install/33.png)
 
-Now, try booting into the existing OS to se our system. You should see the ```grub``` login screen. 
+You should see the ```grub``` login screen. 
 
 ![alt text](images/install/35.png)
 
-Select "Arch Linux". You'll be asked to log in via terminal.
+Select "Arch Linux". You'll be asked to log in via terminal. Type your username and password.
 
 ![alt text](images/install/36.png)
 
 We're good! If you want a desktop, you can choose whichever you like, and set it up. I'm going to use Gnome for this because it's my go-to, but the point of Arch is that you can use whatever you want and configure it however you like. This will usually entail installing the desktop, and, if it's not included in the desktop package, a display manager. First the install (this takes a while - Gnome is full-size desktop):
 
-    sudo pacman -S gnome gnome-terminal
+    sudo pacman -S gnome
 
 And enable the Gnome display manager like this:
 
