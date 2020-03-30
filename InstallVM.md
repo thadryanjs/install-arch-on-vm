@@ -1,19 +1,44 @@
-# How to install Arch Linux on VirtualBox (3-15-2020)
+# How to install Arch Linux on VirtualBox 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_loadScreen.png)
 
-There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
+There have been several walkthroughs on installing [Arch Linux](https://wiki.archlinux.org/index.php/Arch_Linux) on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a procedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
+
+## Pros and Cons or Arch
+
+- TL;DNR: Arch is great is you want a well-documented, minimal system that you can customize, has up-to-date software, and will teach you about Linux. It's not great if you want something up and running quickly with out-of-the-box features or something that doesn't update often.
+
+The benefits and downsides or Arch have been debated extensively (ad nauseam?) all over the internet. This is my take on summarizing them in as briefly as possible while still giving a good enough overview that people can choose for themselves (this is purely from a practical standpoint and doesn't get into more [philosphical stuff](https://www.reddit.com/r/linux/comments/5n069y/why_do_people_not_like_systemd/) like ```systemd```).
+
+### Pros
+
+- Minimal - Arch installs a minimal system without even so much as a desktop environment and not a lot of stuff to slow your system down. The user doesn't have the hassle of tracking down extra software and figuring if it's bloat or important.
+
+- Customizable -  This minimal approach means you can install whatever you want. In particular, you get to choose a desktop without depending on that has been made into a flavor/edition/spin. 
+
+-  Well-documented - The much-hyped [Arch Wiki](https://wiki.archlinux.org/) is, in fact, great.
+
+- Transparent - It's often said Arch is good if you want to learn more about GNU/Linux and how it works. Arch is helpful for this in my experience - I learned a lot tinkering under the hood.
+
+- Current - Arch is a rolling release distro know for getting updates quickly.
+
+### Cons
+
+- (Relatively) Complex to install - Arch has a more involved installation process that other distros; the minimal system doesn't come without a trade-off. It's less geared to getting a system setup quickly and easily than other distros.
+
+- Requires some maintenance - every now and then (a handful of times a year maybe) a package will requires you to manually run a command or two to update properly. They'll be noted on the front page of the Arch website, but if you let them build up, things can get weird. In theory, this increases the chances that some update will screw up your machine and require you too boot into a live medium and fix it.
+
+## Procedure
 
 Head over to the [Arch Linux download page](https://www.archlinux.org/download/) and either torrent yourself an ISO or download one from one of the mirrors.
 
-## The VirtualBox Part
+### The VirtualBox Part
 
-VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). For Windows/Mac people, select the installer from the list. When on Linux I prefer to go with my distro-specific packge manager. 
+VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). For Windows/Mac people, select the installer from the list. When on Linux I prefer to go with my distro-specific package manager. 
 
-### Setting up a virtual machine
+#### Setting up a virtual machine
 
 There are a few steps to the VM setup but they're simple and the defaults will work in most cases. Once you've got VirtualBox running, click "New" to get things started.
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_1.png)
 
@@ -37,7 +62,7 @@ I use dynamically allocated by default, and it will work fine for our purposes.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_6.png)
 
-I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a vm, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
+I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a VM, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/virtualbox_7.png)
 
@@ -71,16 +96,15 @@ Click the "Add" symbol in the left of the menu, navigate to wherever you downloa
 
 Select the first option, which boots us into a live Arch system. When you boot in, a series of message will flash by and then you'll see something like this:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_00.png)
 
 *Note: If the terminal seems cluttered, pressing ctl-l between commands will clear the screen. If the amount of black space on your screen looks different than mine it's probably just that I've done this.*
 
 Here goes!
 
-## The Arch part
+### The Arch part
 
-### Partitioning
+#### Partitioning
 
 This is where we prepare the hard drive for installation. There are many ways to do this, with separate partitions for boot, swap, etc, but for a simple test VM, we're just going to install it all into one partition. We prepare it using the following command.
 
@@ -88,21 +112,17 @@ This is where we prepare the hard drive for installation. There are many ways to
 
 This starts a partitioning tool. You'll be given an option to select "label type" by moving the arrows up and down. We're looking for ```dos```.
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_0.png)
 
-Next you will see a screen like the one below. You can move left and write with arrow keys to make a selection. Move to "New", and hit "enter" to make a new partition of the virtual hardrive. 
-
+Next you will see a screen like the one below. You can move left and write with arrow keys to make a selection. Move to "New", and hit "enter" to make a new partition of the virtual hard rive. 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp1.png)
 
 Hit enter to use all 24G.
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp2.png)
 
 Select "primary" when asked for type (extended partitions allow for sub-dividing space, which isn't a concern since we're using the whole virtual disk for one thing).
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp3.png)
 
@@ -126,7 +146,7 @@ Now we can head over to "Quit" and exit the partition editor tool.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp8.png)
 
-### Filesystems
+#### File systems
 
 Next, we assign the file system type to the newly partitioned drive partition. ```ext4``` is the default file system for Linux.
 
@@ -139,7 +159,7 @@ You will see some output from the results of the command. Now we mount the drive
 
     mount /dev/sda1 /mnt
 
-### The Base System
+#### The Base System
 
 Arch uses a utility called ```pacstrap``` utility to install the base Arch system. *If you're looking for an update, this is one place where things are different from previous tutorials.* In previous versions only ```base``` and ```base-devel``` were needed here. Failing to include ```linux``` and ```linux-firmware``` will cause a failure to boot later on because this is the actual Linux kernel and associated content. This step will most likely take several minutes. 
 
@@ -147,25 +167,21 @@ Arch uses a utility called ```pacstrap``` utility to install the base Arch syste
 
 Initially, you'll see:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_5.png)
 
 ...and then something like:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_6.png)
 
-This is the normal display of Arch syncing and installing packages, the equivalent of the ```apt update```, etc proceedure in Debian based systems. Hit enter to continute when promted.
+This is the normal display of Arch syncing and installing packages, the equivalent of the ```apt update```, etc procedure in Debian based systems. Hit enter to continue when prompted.
 
 When it's done, it will look like this:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_7.png)
 
-We now need to create a file system table. This is a record of our hard drive partitions assigned indentifiers for effecient look-up. If you're curious, you can view the help for the command like this:
+We now need to create a file system table. This is a record of our hard drive partitions assigned identifiers for efficient look-up. If you're curious, you can view the help for the command like this:
 
     genfstab -h
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_8.png)
 
@@ -179,47 +195,39 @@ Now we use the Arch version of ```chroot```. This creates an isolated environmen
 
 You should notice a change in the terminal prompt:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_11.png)
-
 
 We will install ```nano```, and simple text-editor, within ```chroot``` so we can do some manual configuration. ```pacman``` is the package manager for Arch. It's fast, simple, and dearly beloved. ```-S``` means "sync", as in "sync these packages with my machine". *This is also a divergence from previous tutorials*.
 
     pacman -S nano
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_12.png)
 
 Hit enter to accept the default and proceed with the installation. This should be quick.
 
-### Language
+#### Language
 
 Now we're free to edit some files:
 
     nano /etc/locale.gen
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_14.png)
 
-We're doing this setup for English language systems, use whatever you're looking for. Basically we're just uncommenting the language locale we want. If you're configuring an English langauge system, scroll until you find...
+We're doing this setup for English language systems, use whatever you're looking for. Basically we're just un-commenting the language locale we want. If you're configuring an English language system, scroll until you find...
 
 *#en_US.UTF-8 UTF-8*
 
-...and uncomment it. 
-
+...and un-comment it. 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_15.png)
 
-
-Press ```ctr-x``` to exit ```nano```. You'll be asked if you want to save the modified buffer. 
-
+Press ```ctr-x``` to exit ```nano```. You'll be asked if you want to save the modified buffer.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_16.png)
 
-Type ```y```, then hit enter when asked for the filename to save it as (it will default to the one we gave it using the ```nano``` command). We can now run the ```locale-gen``` command to generate the locale information.
+Type ```y```, then hit enter when asked for the file name to save it as (it will default to the one we gave it using the ```nano``` command). We can now run the ```locale-gen``` command to generate the locale information.
 
     locale-gen
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_17.png)
 
@@ -236,12 +244,11 @@ Enter...
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_18.png)
 
-### Time
+#### Time
 
- Next up is time zones. We can see a list of the seletions using this commands.
+ Next up is time zones. We can see a list of the selections using this commands.
 
     ls /usr/share/zoneinfo
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_19.png)
 
@@ -251,9 +258,7 @@ You can see the options under each region using ``ls`` on one of the folders sho
 
 ...to see which region you're in:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_timezones.png)
-
 
 We then set the desired zone to our system localtime. This command creates a "symbolic link" from the zone info data, and associates that link with a new config file called *etc/localtime*. I'm in the northeastern US, so for me it's:
 
@@ -265,9 +270,9 @@ Next is the "hardware" clock of our VM. Problems here can lead to trouble updati
 
     hwclock --systohc --utc
 
-This command is also silent when succesful.
+This command is also silent when successful.
 
-## Users and Permissions
+#### Users and Permissions
 
 Now we create a password for the root user.
 
@@ -278,12 +283,11 @@ Here is what your screen should look like:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_21.png)
 
-Practically speaking, I think it's worth making a main user at this point, though it isn't techincally required.
+Practically speaking, I think it's worth making a main user at this point, though it isn't technically required.
 
     useradd -m -g users -G wheel -s /bin/bash username
 
-The ```-m``` flag creates a ```/home``` directory for the new user. The ```-g``` flag specifies the group to add the user to. The ```-G``` flag refers to auxilliary groups to add the user to. In this case, they're added to the ```wheel``` group, which will let them be a full admin. ```/bin/bash``` specifies what shell the user will have. It's typical to use bash. Don't forget to change ```username``` to the name you want.
-
+The ```-m``` flag creates a ```/home``` directory for the new user. The ```-g``` flag specifies the group to add the user to. The ```-G``` flag refers to auxiliary groups to add the user to. In this case, they're added to the ```wheel``` group, which will let them be a full admin. ```/bin/bash``` specifies what shell the user will have. It's typical to use bash. Don't forget to change ```username``` to the name you want.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_22.png)
 
@@ -291,22 +295,19 @@ Give the user a password:
 
     passwd username
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_23.png)
-
 
 Now, we allow our users in the wheel group to use ```sudo```. The ```visudo```   command makes sure the edits to the file are syntactically legit so you don't screw it up with a typo.
 
     EDITOR=nano visudo
 
-Find and uncomment the following line:
+Find and un-comment the following line:
 
 *%wheel ALL=(ALL) ALL*
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_25.png)
 
-### Hostname & Network
+#### Hostname & Network
 
 Now to name the machine:
 
@@ -314,10 +315,9 @@ Now to name the machine:
 
 Enter the name you want and exit ```nano```.
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_26.png)
 
-Now we need to setup the network inside chroot so we can install the bootloaded (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
+Now we need to setup the network inside chroot so we can install the bootloader (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
 
     pacman -S dhcpcd
 
@@ -325,21 +325,17 @@ We've install the network manager, but we need to turn it on. We can do so using
 
     systemctl enable dhcpcd
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_27.png)
 
-Now we can install ```grub```, which will allow us to boot into our system. ```os-prober``` is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a vm. It's good to know it exists however.
+Now we can install ```grub```, which will allow us to boot into our system. ```os-prober``` is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a VM. It's good to know it exists however.
 
     pacman –S grub os-prober
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_28.png)
-
 
 Now that we have ```grub```, we can install to our ```/dev/sda``` drive where is will be able to "see" the rest of our system:
 
     grub-install /dev/sda
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_new_grb.png)
 
@@ -366,11 +362,9 @@ You should be back at the boot screen. Now, try booting into the existing OS to 
 
 You should see the ```grub``` login screen. 
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_35.png)
 
 Select "Arch Linux". You'll be asked to log in via terminal. Type your username and password.
-
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_36.png)
 
@@ -382,11 +376,9 @@ You may see the following prompt:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_jack.png)
 
-Accepting the default is fine (it's an audio component use in the Gnome package). You maybe also see:
+Accepting the default is fine (it's an audio component use in the Gnome package)
 
-![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_after_jack.png)
-
-Accepting the default is ok here too. This is related to how certain apps are contained within their own environment using something called ```Flatpak``` and doesn't change anything for our current purpose. Next, enable the Gnome display manager like this:
+Next, enable the Gnome display manager like this:
 
     systemctl enable gdm.service
 
@@ -394,4 +386,13 @@ This will allow us to use the desktop after boot. Reboot, and you will be greete
 
     reboot
 
-You should now have a working VM. I'd reccomend checking out the Arch Wiki on tweaking the virtual machine for your host OS to allow for fullscreen, shared clipboard, and shared drives.
+You should now have a working VM. I'd recommend checking out the [Arch Wiki](https://wiki.archlinux.org/index.php/VirtualBox) on tweaking the virtual machine for your host OS to allow for fullscreen, shared clipboard, and shared drives.
+
+#### References:
+
+	https://wiki.archlinux.org/index.php/Installation_guide
+
+	https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/
+
+	# now retired apparently
+	https://bigdaddylinux.com/easily-install-arch-linux-in-virtualbox/
