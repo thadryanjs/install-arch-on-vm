@@ -349,7 +349,6 @@ This command will create a config file for ```grub``` from which we can customiz
 
 You should see something like this:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_31.png)
 
 This is important: what it says it's detecting is the Linux kernel we installed earlier. This means ```grub``` knows where to look when it's time to boot. We can now exit the ```chroot``` environment:
@@ -381,12 +380,13 @@ We're good! If you want a desktop, you can choose whichever you like, and set it
 
 You may see the following prompt:
 
-
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_jack.png)
 
-Accepting the default is fine (it's an audio component use in the Gnome package)
+Accepting the default is fine (it's an audio component use in the Gnome package). You maybe also see:
 
-Next, enable the Gnome display manager like this:
+![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_after_jack.png)
+
+Accepting the default is ok here too. This is related to how certain apps are contained within their own environment using something called ```Flatpak``` and doesn't change anything for our current purpose. Next, enable the Gnome display manager like this:
 
     systemctl enable gdm.service
 
