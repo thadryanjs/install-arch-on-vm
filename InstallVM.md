@@ -8,7 +8,7 @@ There have been several walkthroughs on installing [Arch Linux](https://wiki.arc
 
 - TL;DNR: Arch is great is you want a well-documented, minimal system that you can customize, has up-to-date software, and will teach you about Linux. It's not great if you want something up and running quickly with out-of-the-box features or something that doesn't update often.
 
-The benefits and downsides or Arch have been debated extensively (ad nauseam?) all over the internet. This is my take on summarizing them in as briefly as possible while still giving a good enough overview that people can choose for themselves (this is purely from a practical standpoint and doesn't get into more [philosphical stuff](https://www.reddit.com/r/linux/comments/5n069y/why_do_people_not_like_systemd/) like ```systemd```).
+The benefits and downsides or Arch have been debated extensively (ad nauseam?) all over the internet. This is my take on summarizing them in as briefly as possible while still giving a good enough overview that people can choose for themselves (this is purely from a practical standpoint and doesn't get into more [philosphical stuff](https://www.reddit.com/r/linux/comments/5n069y/why_do_people_not_like_systemd/) like `systemd`).
 
 ### Pros
 
@@ -110,7 +110,7 @@ This is where we prepare the hard drive for installation. There are many ways to
 
     cfdisk
 
-This starts a partitioning tool. You'll be given an option to select "label type" by moving the arrows up and down. We're looking for ```dos```.
+This starts a partitioning tool. You'll be given an option to select "label type" by moving the arrows up and down. We're looking for `dos`.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_0.png)
 
@@ -136,7 +136,7 @@ Navigate to "Write" and hit enter to make these changes actually happen. If we w
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp5.png)
 
-You will have to type "yes" to consent to the operation. The top of the screen should show a partition of 24G on /dev/sda1 with a ```*``` under "Boot".
+You will have to type "yes" to consent to the operation. The top of the screen should show a partition of 24G on /dev/sda1 with a `*` under "Boot".
 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_gp7.png)
@@ -148,7 +148,7 @@ Now we can head over to "Quit" and exit the partition editor tool.
 
 #### File systems
 
-Next, we assign the file system type to the newly partitioned drive partition. ```ext4``` is the default file system for Linux.
+Next, we assign the file system type to the newly partitioned drive partition. `ext4` is the default file system for Linux.
 
     mkfs.ext4 /dev/sda1
 
@@ -161,7 +161,7 @@ You will see some output from the results of the command. Now we mount the drive
 
 #### The Base System
 
-Arch uses a utility called ```pacstrap``` utility to install the base Arch system. *If you're looking for an update, this is one place where things are different from previous tutorials.* In previous versions only ```base``` and ```base-devel``` were needed here. Failing to include ```linux``` and ```linux-firmware``` will cause a failure to boot later on because this is the actual Linux kernel and associated content. This step will most likely take several minutes. 
+Arch uses a utility called `pacstrap` utility to install the base Arch system. *If you're looking for an update, this is one place where things are different from previous tutorials.* In previous versions only `base` and `base-devel` were needed here. Failing to include `linux` and `linux-firmware` will cause a failure to boot later on because this is the actual Linux kernel and associated content. This step will most likely take several minutes. 
 
     pacstrap /mnt base base-devel linux linux-firmware
 
@@ -173,7 +173,7 @@ Initially, you'll see:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_6.png)
 
-This is the normal display of Arch syncing and installing packages, the equivalent of the ```apt update```, etc procedure in Debian based systems. Hit enter to continue when prompted.
+This is the normal display of Arch syncing and installing packages, the equivalent of the `apt update`, etc procedure in Debian based systems. Hit enter to continue when prompted.
 
 When it's done, it will look like this:
 
@@ -189,7 +189,7 @@ To use it, and redirect the output to the proper spot on our system, use this co
 
     genfstab /mnt >> /mnt/etc/fstab
 
-Now we use the Arch version of ```chroot```. This creates an isolated environment that doesn't have access to the main system in case we biff something (the extra arguments are where to put this environment and what shell to use).
+Now we use the Arch version of `chroot`. This creates an isolated environment that doesn't have access to the main system in case we biff something (the extra arguments are where to put this environment and what shell to use).
 
     arch-chroot /mnt /bin/bash
 
@@ -197,7 +197,7 @@ You should notice a change in the terminal prompt:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_11.png)
 
-We will install ```nano```, and simple text-editor, within ```chroot``` so we can do some manual configuration. ```pacman``` is the package manager for Arch. It's fast, simple, and dearly beloved. ```-S``` means "sync", as in "sync these packages with my machine". *This is also a divergence from previous tutorials*.
+We will install `nano`, and simple text-editor, within `chroot` so we can do some manual configuration. `pacman` is the package manager for Arch. It's fast, simple, and dearly beloved. `-S` means "sync", as in "sync these packages with my machine". *This is also a divergence from previous tutorials*.
 
     pacman -S nano
 
@@ -221,11 +221,11 @@ We're doing this setup for English language systems, use whatever you're looking
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_15.png)
 
-Press ```ctr-x``` to exit ```nano```. You'll be asked if you want to save the modified buffer.
+Press `ctr-x` to exit `nano`. You'll be asked if you want to save the modified buffer.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_16.png)
 
-Type ```y```, then hit enter when asked for the file name to save it as (it will default to the one we gave it using the ```nano``` command). We can now run the ```locale-gen``` command to generate the locale information.
+Type `y`, then hit enter when asked for the file name to save it as (it will default to the one we gave it using the `nano` command). We can now run the `locale-gen` command to generate the locale information.
 
     locale-gen
 
@@ -239,7 +239,7 @@ Enter...
 
 *LANG=en_US.UTF-8*
 
-...into this file, and exit ```nano``` as before.
+...into this file, and exit `nano` as before.
 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_18.png)
@@ -287,7 +287,7 @@ Practically speaking, I think it's worth making a main user at this point, thoug
 
     useradd -m -g users -G wheel -s /bin/bash username
 
-The ```-m``` flag creates a ```/home``` directory for the new user. The ```-g``` flag specifies the group to add the user to. The ```-G``` flag refers to auxiliary groups to add the user to. In this case, they're added to the ```wheel``` group, which will let them be a full admin. ```/bin/bash``` specifies what shell the user will have. It's typical to use bash. Don't forget to change ```username``` to the name you want.
+The `-m` flag creates a `/home` directory for the new user. The `-g` flag specifies the group to add the user to. The `-G` flag refers to auxiliary groups to add the user to. In this case, they're added to the `wheel` group, which will let them be a full admin. `/bin/bash` specifies what shell the user will have. It's typical to use bash. Don't forget to change `username` to the name you want.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_22.png)
 
@@ -297,7 +297,7 @@ Give the user a password:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_23.png)
 
-Now, we allow our users in the wheel group to use ```sudo```. The ```visudo```   command makes sure the edits to the file are syntactically legit so you don't screw it up with a typo.
+Now, we allow our users in the wheel group to use `sudo`. The `visudo`  command makes sure the edits to the file are syntactically legit so you don't screw it up with a typo.
 
     EDITOR=nano visudo
 
@@ -313,33 +313,33 @@ Now to name the machine:
 
     nano /etc/hostname
 
-Enter the name you want and exit ```nano```.
+Enter the name you want and exit `nano`.
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_26.png)
 
-Now we need to setup the network inside chroot so we can install the bootloader (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in ```chroot``` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
+Now we need to setup the network inside chroot so we can install the bootloader (up until now, we've been getting sweet internet goodness from the host machine, but we're hidden away in `chroot` at the moment). We will install a network manager to enable this. *This is a divergence from previous tutorials as well*. Run the following command and hit enter to accept the install.
 
     pacman -S dhcpcd
 
-We've install the network manager, but we need to turn it on. We can do so using the ```systemctl``` command. 
+We've install the network manager, but we need to turn it on. We can do so using the `systemctl` command. 
 
     systemctl enable dhcpcd
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_27.png)
 
-Now we can install ```grub```, which will allow us to boot into our system. ```os-prober``` is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a VM. It's good to know it exists however.
+Now we can install `grub`, which will allow us to boot into our system. `os-prober` is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a VM. It's good to know it exists however.
 
     pacman –S grub os-prober
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_28.png)
 
-Now that we have ```grub```, we can install to our ```/dev/sda``` drive where is will be able to "see" the rest of our system:
+Now that we have `grub`, we can install to our `/dev/sda` drive where is will be able to "see" the rest of our system:
 
     grub-install /dev/sda
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_new_grb.png)
 
-This command will create a config file for ```grub``` from which we can customize it later if desired. 
+This command will create a config file for `grub` from which we can customize it later if desired. 
 
     grub-mkconfig –o /boot/grub/grub.cfg
 
@@ -347,7 +347,7 @@ You should see something like this:
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_31.png)
 
-This is important: what it says it's detecting is the Linux kernel we installed earlier. This means ```grub``` knows where to look when it's time to boot. We can now exit the ```chroot``` environment:
+This is important: what it says it's detecting is the Linux kernel we installed earlier. This means `grub` knows where to look when it's time to boot. We can now exit the `chroot` environment:
 
     exit
 
@@ -360,7 +360,7 @@ You should be back at the boot screen. Now, try booting into the existing OS to 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_33.png)
 
-You should see the ```grub``` login screen. 
+You should see the `grub` login screen. 
 
 ![](http://pythoninthewyld.com/wp-content/uploads/2020/03/install_35.png)
 
@@ -396,3 +396,4 @@ You should now have a working VM. I'd recommend checking out the [Arch Wiki](htt
 
 	# now retired apparently
 	https://bigdaddylinux.com/easily-install-arch-linux-in-virtualbox/
+
