@@ -348,9 +348,9 @@ You may see the following prompt (or a few like it):
 They're dependencies used by Gnome. Accepting the defaults is fine (In this case, it's an audio component use in the Gnome package).
 
 
-Next, enable the Gnome display manager like this:
+Next, enable the Gnome display manager like this (you'll be asked to enter your password):
 
-    systemctl enable gdm.service
+    sudo systemctl enable gdm.service
 
 This will allow us to use the desktop after boot. Reboot, and you will be greeted with a the Gnome login screen.
 
