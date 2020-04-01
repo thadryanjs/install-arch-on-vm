@@ -2,13 +2,13 @@
 
 ![alt text](images/loadScreen.png)
 
-There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a proceedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
+There have been several walkthroughs on installing Arch on VMs, like [this one](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/) for example. However, I noticed there have been some changes that call for a few updates, so I thought I'd post a procedure that included them. As of the date of this post, this guide will produce a working system from the ground up. I also added some tweaks to get the most out of the VM, creating and adding users, and installing a desktop environment.
 
 Head over to the [Arch Linux download page](https://www.archlinux.org/download/) and either torrent yourself an ISO or download one from one of the mirrors.
 
 ## The VirtualBox Part
 
-VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). For Windows/Mac people, select the installer from the list. When on Linux I prefer to go with my distro-specific packge manager. 
+VirtualBox can be downloaded [here](https://www.virtualbox.org/wiki/Downloads). For Windows/Mac people, select the installer from the list. When on Linux I prefer to go with my distro-specific package manager. 
 
 ### Setting up a virtual machine
 
@@ -36,7 +36,7 @@ I use dynamically allocated by default, and it will work fine for our purposes.
 
 ![alt text](images/virtualbox/virtualbox_6.png)
 
-I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a vm, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
+I put the size up to 24 GB in case we want to build out the system and try it for a daily driver for a while or something. It's just a VM, so [it's no big deal!](https://i.kym-cdn.com/entries/icons/original/000/021/311/free.jpg)
 
 ![alt text](images/virtualbox/virtualbox_7.png)
 
@@ -116,7 +116,7 @@ Now we can head over to "Quit" and exit the partition editor tool.
 
 ![alt text](images/install/install_gp8.png)
 
-### Filesystems
+### File systems
 
 Next, we assign the file system type to the newly partitioned drive partition. 'ext4' is the default file system for Linux.
 
@@ -142,13 +142,13 @@ Initially, you'll see:
 
 ![alt text](images/install/install_6.png)
 
-This is the normal display of Arch syncing and installing packages, the equivalent of the 'apt update', etc proceedure in Debian based systems. Hit enter to continute when promted.
+This is the normal display of Arch syncing and installing packages, the equivalent of the 'apt update', etc procedure in Debian based systems. Hit enter to continue when tromped.
 
 When it's done, it will look like this:
 
 ![alt text](images/install/install_7.png)
 
-We now need to create a file system table. This is a record of our hard drive partitions assigned indentifiers for effecient look-up. If you're curious, you can view the help for the command like this:
+We now need to create a file system table. This is a record of our hard drive partitions assigned identifiers for efficient look-up. If you're curious, you can view the help for the command like this:
 
     genfstab -h
 
@@ -183,7 +183,7 @@ Now we're free to edit some files:
 
 ![alt text](images/install/install_14.png)
 
-We're doing this setup for English language systems, use whatever you're looking for. Basically we're just uncommenting the language locale we want. If you're configuring an English langauge system, scroll until you find...
+We're doing this setup for English language systems, use whatever you're looking for. Basically we're just uncommenting the language locale we want. If you're configuring an English language system, scroll until you find...
 
 *#en_US.UTF-8 UTF-8*
 
@@ -196,7 +196,7 @@ Press 'ctr-x' to exit 'nano'. You'll be asked if you want to save the modified b
 
 ![alt text](images/install/install_16.png)
 
-Type 'y', then hit enter when asked for the filename to save it as (it will default to the one we gave it using the 'nano' command). We can now run the 'locale-gen' command to generate the locale information.
+Type 'y', then hit enter when asked for the file name to save it as (it will default to the one we gave it using the 'nano' command). We can now run the 'locale-gen' command to generate the locale information.
 
     locale-gen
 
@@ -216,7 +216,7 @@ Enter...
 
 ### Time
 
- Next up is time zones. We can see a list of the seletions using this commands.
+ Next up is time zones. We can see a list of the selections using this commands.
 
     ls /usr/share/zoneinfo
 
@@ -241,7 +241,7 @@ Next is the "hardware" clock of our VM. Problems here can lead to trouble updati
 
     hwclock --systohc --utc
 
-This command is also silent when succesful.
+This command is also silent when successful.
 
 ## Users and Permissions
 
@@ -253,11 +253,11 @@ Here is what your screen should look like:
 
 ![alt text](images/install/install_21.png)
 
-Practically speaking, I think it's worth making a main user at this point, though it isn't techincally required.
+Practically speaking, I think it's worth making a main user at this point, though it isn't technically required.
 
     useradd -m -g users -G wheel -s /bin/bash username
 
-The '-m' flag creates a '/home' directory for the new user. The '-g' flag specifies the group to add the user to. The '-G' flag refers to auxilliary groups to add the user to. In this case, they're added to the 'wheel' group, which will let them be a full admin. '/bin/bash' specifies what shell the user will have. It's typical to use bash. Don't forget to change 'username' to the name you want.
+The '-m' flag creates a '/home' directory for the new user. The '-g' flag specifies the group to add the user to. The '-G' flag refers to auxiliary groups to add the user to. In this case, they're added to the 'wheel' group, which will let them be a full admin. '/bin/bash' specifies what shell the user will have. It's typical to use bash. Don't forget to change 'username' to the name you want.
 
 ![alt text](images/install/install_22.png)
 
@@ -298,7 +298,7 @@ We've install the network manager, but we need to turn it on. We can do so using
 
 ![alt text](images/install/install_27.png)
 
-Now we can install 'grub', which will allow us to boot into our system. 'os-prober' is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a vm. It's good to know it exists however.
+Now we can install 'grub', which will allow us to boot into our system. 'os-prober' is sometimes installed at this step. It detects other operating systems if you dual boot, though that won't be an issue with a VM. It's good to know it exists however.
 
     pacman –S grub os-prober
 
@@ -356,4 +356,4 @@ This will allow us to use the desktop after boot. Reboot, and you will be greete
 
     reboot
 
-You should now have a working VM. I'd reccomend checking out the Arch Wiki on tweaking the virtual machine for your host OS to allow for fullscreen, shared clipboard, and shared drives.
+You should now have a working VM. I'd recommend checking out the Arch Wiki on tweaking the virtual machine for your host OS to allow for full screen, shared clipboard, and shared drives.
