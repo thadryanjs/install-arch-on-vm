@@ -309,7 +309,7 @@ Now that we have 'grub', we can install to our '/dev/sda' drive where is will be
 
     grub-install /dev/sda
 
-It should tell you it installed with no errors. This command will create a config file for grub from which we can customize it later if desired. 
+It should tell you it installed with no errors. This command will create a config file for grub from which we can customize it later if desired. The `-o` just means 'output'.
 
     grub-mkconfig –o /boot/grub/grub.cfg
 
