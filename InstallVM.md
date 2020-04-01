@@ -309,15 +309,13 @@ Now that we have 'grub', we can install to our '/dev/sda' drive where is will be
 
     grub-install /dev/sda
 
-![alt text](images/install/install_new_grb.png)
-
-This command will create a config file for 'grub' from which we can customize it later if desired. 
+It should tell you it installed with no errors. This command will create a config file for grub from which we can customize it later if desired. 
 
     grub-mkconfig –o /boot/grub/grub.cfg
 
 You should see something like this:
 
-![alt text](images/install/install_31.png)
+![alt text](images/install/install_grub-conf.png)
 
 This is important: what it says it's detecting is the Linux kernel we installed earlier. This means 'grub' knows where to look when it's time to boot. We can now exit the 'chroot' environment:
 
@@ -343,11 +341,12 @@ We're good! If you want a desktop, you can choose whichever you like, and set it
 
     sudo pacman -S gnome
 
-You may see the following prompt:
+You may see the following prompt (or a few like it):
 
 ![alt text](images/install/install_jack.png)
 
-Accepting the default is fine (it's an audio component use in the Gnome package)
+They're dependencies used by Gnome. Accepting the defaults is fine (In this case, it's an audio component use in the Gnome package).
+
 
 Next, enable the Gnome display manager like this:
 
